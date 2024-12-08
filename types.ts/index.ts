@@ -2,7 +2,7 @@ import * as z from "zod";
 import { store } from "@/store";
 import { LoginFormSchema } from "@/app/(pages)/login/validations";
 import { SignUpFormSchema } from "@/app/(pages)/signup/validations";
-import { CombinedPasswordFormSchema } from "@/app/(pages)/forgot-password/validations";
+import { CombinedPasswordFormSchema } from "@/app/(pages)/ssword/validations";
 import {
   AddDrugFormSchema,
   SellDrugsFormSchema,
