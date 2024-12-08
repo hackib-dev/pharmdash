@@ -3,7 +3,6 @@ import axios from "../utils/axios";
 import {
   LoginFormData,
   SignUpFormData,
-  CombinedPasswordFormData,
   AddDrugFormData,
   SellDrugFormData,
 } from "@/types.ts";

@@ -1,7 +1,6 @@
 import {
   LoginFormData,
   SignUpFormData,
-  CombinedPasswordFormData,
   AddDrugFormData,
   SellDrugFormData,
 } from "@/types.ts";
