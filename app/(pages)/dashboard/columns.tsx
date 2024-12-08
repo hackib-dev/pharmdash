@@ -43,10 +43,10 @@ export const columns: ColumnDef<Medicine>[] = [
   {
     accessorKey: "pricePerUnit",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Price (N)" />
+      <DataTableColumnHeader column={column} title="Price ($)" />
     ),
     cell: ({ row }) => (
-      <div className="min-w-[120px]">{`₦${row.getValue("pricePerUnit")}`}</div>
+      <div className="min-w-[120px]">{`$${row.getValue("pricePerUnit")}`}</div>
     ),
   },
   {
