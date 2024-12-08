@@ -6,7 +6,7 @@ import { Providers } from "./Providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Project Bist",
+  title: "Pharmaceutical Project",
   // description: "By Aqib Akinyele",
   // icons: {
   //   icon: "/logo.svg",
