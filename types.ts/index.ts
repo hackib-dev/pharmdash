@@ -2,7 +2,6 @@ import * as z from "zod";
 import { store } from "@/store";
 import { LoginFormSchema } from "@/app/(pages)/login/validations";
 import { SignUpFormSchema } from "@/app/(pages)/signup/validations";
-import { CombinedPasswordFormSchema } from "@/app/(pages)/ssword/validations";
 import {
   AddDrugFormSchema,
   SellDrugsFormSchema,
@@ -25,6 +24,3 @@ export type LoginFormData = z.infer<typeof LoginFormSchema>;
 export type SignUpFormData = z.infer<typeof SignUpFormSchema>;
 export type AddDrugFormData = z.infer<typeof AddDrugFormSchema>;
 export type SellDrugFormData = z.infer<typeof SellDrugsFormSchema>;
-export type CombinedPasswordFormData = z.infer<
-  typeof CombinedPasswordFormSchema
->;
