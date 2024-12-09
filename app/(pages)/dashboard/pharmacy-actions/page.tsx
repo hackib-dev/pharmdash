@@ -515,7 +515,7 @@ const PharmacyActions = () => {
                     control={sellDrugsForm.control}
                     name="customerName"
                     render={({ field }) => (
-                      <FormItem>
+                      <FormItem className="col-span-2 md:col-span-1">
                         <FormLabel className="text-xs uppercase">
                           Customer Name
                         </FormLabel>
