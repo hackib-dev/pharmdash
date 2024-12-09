@@ -115,7 +115,7 @@ const PharmacyActions = () => {
       medicationSold: "",
       price: "",
       quantity: "",
-      soldBy: "",
+      soldBy: firstName,
       zipCode: "",
     },
   });
@@ -151,7 +151,13 @@ const PharmacyActions = () => {
       return;
     }
 
-    sellDrugs(data);
+    const transformedData = {
+      ...data,
+      medicationSold: Number(data.medicationSold),
+      price: Number(data.price),
+    };
+
+    sellDrugs(transformedData as unknown as SellDrugFormData);
   };
 
   const onSubmit = async (data: AddDrugFormData) => {
@@ -524,28 +530,48 @@ const PharmacyActions = () => {
                       </FormItem>
                     )}
                   />
-                  <div>
-                    <FormField
-                      control={sellDrugsForm.control}
-                      name="medicationSold"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel className="text-xs uppercase">
-                            medicaiton sold
-                          </FormLabel>
-                          <FormControl>
-                            <Input
-                              className="text-xs"
-                              type="number"
-                              placeholder="Enter medications sold"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-                  </div>
+
+                  <FormField
+                    control={sellDrugsForm.control}
+                    name="medicationSold"
+                    render={({ field }) => (
+                      <FormItem className="col-span-2 md:col-span-1">
+                        <FormLabel className="text-xs uppercase">
+                          Medication Sold
+                        </FormLabel>
+                        <FormControl>
+                          <select
+                            className="text-xs w-full p-3 border rounded"
+                            {...field}
+                            onChange={(e) => {
+                              const selectedId = e.target.value;
+                              field.onChange(selectedId);
+                              const selectedMedication = transformedData.find(
+                                (med) => med.id === +selectedId
+                              );
+                              console.log(selectedMedication?.pricePerUnit);
+                              if (selectedMedication) {
+                                sellDrugsForm.setValue(
+                                  "price",
+                                  selectedMedication.pricePerUnit.toString()
+                                );
+                              }
+                            }}
+                          >
+                            <option value="" disabled>
+                              Select medication
+                            </option>
+                            {transformedData.map((med) => (
+                              <option key={med.id} value={med.id}>
+                                {med.name}
+                              </option>
+                            ))}
+                          </select>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
 
                   <FormField
                     control={sellDrugsForm.control}
@@ -558,8 +584,9 @@ const PharmacyActions = () => {
                         <FormControl>
                           <Input
                             className="text-xs"
-                            placeholder="Enter price"
+                            placeholder="Medication price"
                             type="number"
+                            readOnly
                             {...field}
                           />
                         </FormControl>
@@ -596,11 +623,7 @@ const PharmacyActions = () => {
                           Sold By
                         </FormLabel>
                         <FormControl>
-                          <Input
-                            className="text-xs"
-                            placeholder="Enter sold by user"
-                            {...field}
-                          />
+                          <Input className="text-xs" disabled {...field} />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
